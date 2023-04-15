@@ -9,8 +9,10 @@ sequelize.sync().then(() => {
   console.log("database ready");
 });
 
+const dosenEnpoint = require("./routes/dosen");
 const mahasiswaEnpoint = require("./routes/mahasiswa");
 app.use("/mahasiswa", mahasiswaEnpoint);
+app.use("/dosen", dosenEnpoint);
 
 app.listen(port, () => {
   console.log(`listen port on : ${port}`);
