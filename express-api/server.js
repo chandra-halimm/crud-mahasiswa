@@ -1,10 +1,11 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 const port = 3000;
 const sequelize = require("./db.config");
 
+app.use(cors());
 app.use(express.json());
-
 sequelize.sync().then(() => {
   console.log("database ready");
 });
