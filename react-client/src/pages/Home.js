@@ -19,7 +19,14 @@ const Home = () => {
       <div className="container" style={{ marginTop: "30px" }}>
         <h1 className="text-title text-center">Crud Mahasiswa</h1>
 
-        <button className="button">Tambah Data</button>
+        <button
+          className="button"
+          onClick={() => {
+            window.location.replace("/input");
+          }}
+        >
+          Tambah Data
+        </button>
 
         <div className="flex-center">
           <table>

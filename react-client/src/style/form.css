@@ -1,0 +1,23 @@
+form {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  font-weight: 600;
+  color: #504f4f;
+}
+
+input {
+  margin-top: 5px;
+  padding: 10px;
+  border: none;
+  box-shadow: 4px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  font-size: 15px;
+  color: #504f4f;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
