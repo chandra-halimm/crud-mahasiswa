@@ -3,7 +3,7 @@ import { useState } from "react";
 import "../style/homeStyle.css";
 import "../style/form.css";
 
-const InputData = () => {
+const EditData = () => {
   const [NIM, setNim] = useState("");
   const [nama, setNama] = useState("");
   const [email, setEmail] = useState("");
@@ -22,7 +22,7 @@ const InputData = () => {
     setAlamat(inputAlamat);
   };
 
-  const addData = () => {
+  const editData = () => {
     const requestingData = {
       nim: NIM,
       name: nama,
@@ -30,11 +30,12 @@ const InputData = () => {
       alamat: alamat,
     };
     axios({
-      method: "POST",
+      method: "PUT",
       url: "http://localhost:3000/mahasiswa",
       data: requestingData,
     }).then(() => {
-      alert("data berhasil ditambah");
+      alert("data berhasil diubah");
+      window.location.replace("/");
     });
   };
 
@@ -43,7 +44,7 @@ const InputData = () => {
       <div className="center">
         <div className="container">
           <h1 className="text-center" style={{ marginTop: "15px" }}>
-            Form Tambah Data
+            Form Edit Data
           </h1>
 
           <button
@@ -101,11 +102,10 @@ const InputData = () => {
           <button
             className="button"
             onClick={() => {
-              addData();
-              window.location.replace("/");
+              editData();
             }}
           >
-            Tambah Data
+            Edit Data
           </button>
         </div>
       </div>
@@ -113,4 +113,4 @@ const InputData = () => {
   );
 };
 
-export default InputData;
+export default EditData;

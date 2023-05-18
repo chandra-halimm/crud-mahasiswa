@@ -45,6 +45,33 @@ body {
   color: #b2456e;
 }
 
+.btn-edit {
+  padding: 7px 20px;
+  border: none;
+  background-color: #ecf014;
+  color: #696666;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn-hapus {
+  padding: 7px 20px;
+  margin-left: 5px;
+  border: none;
+  color: #fff;
+  background-color: #cc3434;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn-edit:hover {
+  background-color: #f4f778;
+}
+
+.btn-hapus:hover {
+  background-color: #f05656;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;

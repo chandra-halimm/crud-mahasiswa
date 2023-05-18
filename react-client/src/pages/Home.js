@@ -5,6 +5,22 @@ import axios from "axios";
 const Home = () => {
   const [mahasiswaList, setMahasiswaList] = useState([]);
 
+  const deleteUser = (nim) => {
+    axios({
+      method: "DELETE",
+      url: `http://localhost/mahasiswa/${nim}`,
+    })
+      .then(() => {
+        console.log("deleted users sukses");
+        setMahasiswaList(
+          mahasiswaList.filter((mahasiswa) => mahasiswa.nim !== nim)
+        );
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   useEffect(() => {
     axios({
       method: "GET",
@@ -36,6 +52,8 @@ const Home = () => {
                 <th>Nim</th>
                 <th>Nama</th>
                 <th>Email</th>
+                <th>Alamat</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -48,6 +66,22 @@ const Home = () => {
                     <td>{name}</td>
                     <td>{email}</td>
                     <td>{alamat}</td>
+                    <td>
+                      <button
+                        className="btn-edit"
+                        onClick={() => window.location.replace("/edit")}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        className="btn-hapus"
+                        onClick={() => {
+                          deleteUser(nim);
+                        }}
+                      >
+                        Hapus
+                      </button>
+                    </td>
                   </tr>
                 );
               })}
