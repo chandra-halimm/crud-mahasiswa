@@ -33,9 +33,14 @@ const InputData = () => {
       method: "POST",
       url: "http://localhost:3000/mahasiswa",
       data: requestingData,
-    }).then(() => {
-      alert("data berhasil ditambah");
-    });
+    })
+      .then(() => {
+        alert("data berhasil ditambah");
+        window.location.replace("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -102,7 +107,6 @@ const InputData = () => {
             className="button"
             onClick={() => {
               addData();
-              window.location.replace("/");
             }}
           >
             Tambah Data

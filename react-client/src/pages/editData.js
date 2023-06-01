@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../style/homeStyle.css";
 import "../style/form.css";
 
@@ -8,6 +8,8 @@ const EditData = () => {
   const [nama, setNama] = useState("");
   const [email, setEmail] = useState("");
   const [alamat, setAlamat] = useState("");
+
+  useEffect(() => {});
 
   const handleNim = (inputNim) => {
     setNim(inputNim);

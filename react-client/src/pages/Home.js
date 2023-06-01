@@ -8,13 +8,11 @@ const Home = () => {
   const deleteUser = (nim) => {
     axios({
       method: "DELETE",
-      url: `http://localhost/mahasiswa/${nim}`,
+      url: `http://localhost:3000/mahasiswa/${nim}`,
     })
       .then(() => {
-        console.log("deleted users sukses");
-        setMahasiswaList(
-          mahasiswaList.filter((mahasiswa) => mahasiswa.nim !== nim)
-        );
+        alert("data user berhasil dihapus");
+        window.location.reload();
       })
       .catch((error) => {
         console.log(error);
