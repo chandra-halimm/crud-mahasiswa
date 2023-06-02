@@ -35,7 +35,7 @@ const EditData = () => {
   const getUsersById = async () => {
     try {
       const response = await axios.get(`http://localhost:3000/mahasiswa/${id}`);
-      const data = response.data;
+      const data = response.data.data;
       setNim(data.nim);
       setNama(data.nama);
       setEmail(data.email);
@@ -69,6 +69,7 @@ const EditData = () => {
               type="number"
               id="nim"
               name="nim"
+              value={NIM}
               placeholder="masukkan nim anda"
               required
               onChange={(event) => setNim(event.target.value)}
@@ -80,6 +81,7 @@ const EditData = () => {
               type="text"
               id="nama"
               name="nama"
+              value={nama}
               placeholder="masukkan nama anda"
               required
               onChange={(event) => setNama(event.target.value)}
@@ -91,6 +93,7 @@ const EditData = () => {
               type="email"
               id="email"
               name="email"
+              value={email}
               placeholder="masukkan email anda"
               onChange={(event) => setEmail(event.target.value)}
             />
@@ -101,6 +104,7 @@ const EditData = () => {
               type="text"
               id="alamat"
               name="alamat"
+              value={alamat}
               placeholder="masukkan alamat anda"
               required
               onChange={(event) => setAlamat(event.target.value)}
