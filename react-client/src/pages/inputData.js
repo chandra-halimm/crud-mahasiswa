@@ -9,19 +9,6 @@ const InputData = () => {
   const [email, setEmail] = useState("");
   const [alamat, setAlamat] = useState("");
 
-  const handleNim = (inputNim) => {
-    setNim(inputNim);
-  };
-  const handleNama = (inputNama) => {
-    setNama(inputNama);
-  };
-  const handleEmail = (inputEmail) => {
-    setEmail(inputEmail);
-  };
-  const handleAlamat = (inputAlamat) => {
-    setAlamat(inputAlamat);
-  };
-
   const addData = () => {
     const requestingData = {
       nim: NIM,
@@ -67,7 +54,7 @@ const InputData = () => {
               name="nim"
               placeholder="masukkan nim anda"
               required
-              onChange={(event) => handleNim(event.target.value)}
+              onChange={(event) => setNim(event.target.value)}
             />
           </form>
           <form>
@@ -78,7 +65,7 @@ const InputData = () => {
               name="nama"
               placeholder="masukkan nama anda"
               required
-              onChange={(event) => handleNama(event.target.value)}
+              onChange={(event) => setNama(event.target.value)}
             />
           </form>
           <form>
@@ -88,7 +75,7 @@ const InputData = () => {
               id="email"
               name="email"
               placeholder="masukkan email anda"
-              onChange={(event) => handleEmail(event.target.value)}
+              onChange={(event) => setEmail(event.target.value)}
             />
           </form>
           <form>
@@ -99,7 +86,7 @@ const InputData = () => {
               name="alamat"
               placeholder="masukkan alamat anda"
               required
-              onChange={(event) => handleAlamat(event.target.value)}
+              onChange={(event) => setAlamat(event.target.value)}
             />
           </form>
 

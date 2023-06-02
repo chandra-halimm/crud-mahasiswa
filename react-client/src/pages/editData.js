@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import "../style/homeStyle.css";
 import "../style/form.css";
 
@@ -8,21 +9,11 @@ const EditData = () => {
   const [nama, setNama] = useState("");
   const [email, setEmail] = useState("");
   const [alamat, setAlamat] = useState("");
+  const { id } = useParams();
 
-  useEffect(() => {});
-
-  const handleNim = (inputNim) => {
-    setNim(inputNim);
-  };
-  const handleNama = (inputNama) => {
-    setNama(inputNama);
-  };
-  const handleEmail = (inputEmail) => {
-    setEmail(inputEmail);
-  };
-  const handleAlamat = (inputAlamat) => {
-    setAlamat(inputAlamat);
-  };
+  useEffect(() => {
+    getUsersById();
+  }, []);
 
   const editData = () => {
     const requestingData = {
@@ -39,6 +30,21 @@ const EditData = () => {
       alert("data berhasil diubah");
       window.location.replace("/");
     });
+  };
+
+  const getUsersById = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3000/mahasiswa/${id}`);
+      const data = response.data;
+      setNim(data.nim);
+      setNama(data.nama);
+      setEmail(data.email);
+      setAlamat(data.alamat);
+
+      console.log(response);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   };
 
   return (
@@ -65,7 +71,7 @@ const EditData = () => {
               name="nim"
               placeholder="masukkan nim anda"
               required
-              onChange={(event) => handleNim(event.target.value)}
+              onChange={(event) => setNim(event.target.value)}
             />
           </form>
           <form>
@@ -76,7 +82,7 @@ const EditData = () => {
               name="nama"
               placeholder="masukkan nama anda"
               required
-              onChange={(event) => handleNama(event.target.value)}
+              onChange={(event) => setNama(event.target.value)}
             />
           </form>
           <form>
@@ -86,7 +92,7 @@ const EditData = () => {
               id="email"
               name="email"
               placeholder="masukkan email anda"
-              onChange={(event) => handleEmail(event.target.value)}
+              onChange={(event) => setEmail(event.target.value)}
             />
           </form>
           <form>
@@ -97,7 +103,7 @@ const EditData = () => {
               name="alamat"
               placeholder="masukkan alamat anda"
               required
-              onChange={(event) => handleAlamat(event.target.value)}
+              onChange={(event) => setAlamat(event.target.value)}
             />
           </form>
 
