@@ -11,10 +11,6 @@ const EditData = () => {
   const [alamat, setAlamat] = useState("");
   const { id } = useParams();
 
-  useEffect(() => {
-    getUsersById();
-  }, []);
-
   const editData = () => {
     const requestingData = {
       nim: NIM,
@@ -35,17 +31,20 @@ const EditData = () => {
   const getUsersById = async () => {
     try {
       const response = await axios.get(`http://localhost:3000/mahasiswa/${id}`);
-      const data = response.data.data;
+      const data = await response.data.data;
       setNim(data.nim);
-      setNama(data.nama);
+      setNama(data.name);
       setEmail(data.email);
       setAlamat(data.alamat);
-
-      console.log(response);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
+
+  useEffect(() => {
+    getUsersById();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>

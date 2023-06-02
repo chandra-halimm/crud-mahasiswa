@@ -47,6 +47,7 @@ const Home = () => {
             <thead>
               <tr className="text-center radius">
                 <th>No.</th>
+                <th hidden>id</th>
                 <th>Nim</th>
                 <th>Nama</th>
                 <th>Email</th>
@@ -56,10 +57,11 @@ const Home = () => {
             </thead>
             <tbody>
               {mahasiswaList.map((mahasiswa, i) => {
-                const { nim, name, email, alamat } = mahasiswa;
+                const { id, nim, name, email, alamat } = mahasiswa;
                 return (
                   <tr key={i}>
                     <td className="text-center">{i + 1}</td>
+                    <td hidden>{id}</td>
                     <td>{nim}</td>
                     <td>{name}</td>
                     <td>{email}</td>
