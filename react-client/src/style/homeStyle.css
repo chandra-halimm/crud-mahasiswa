@@ -72,6 +72,28 @@ body {
   background-color: #f05656;
 }
 
+.card {
+  padding: 40px;
+  background-color: #fff;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  border-radius: 20px;
+  margin-top: 40px;
+}
+
+.card form {
+  width: 100%;
+}
+
+.card form input {
+  width: 500px;
+}
+
+.card button {
+  width: 100%;
+  border-radius: 0;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;

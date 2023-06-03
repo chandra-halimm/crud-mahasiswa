@@ -1,17 +1,15 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import "../style/homeStyle.css";
-import "../style/form.css";
+import { useState } from "react";
+import "../../style/homeStyle.css";
+import "../../style/form.css";
 
-const EditData = () => {
+const InputData = () => {
   const [NIM, setNim] = useState("");
   const [nama, setNama] = useState("");
   const [email, setEmail] = useState("");
   const [alamat, setAlamat] = useState("");
-  const { id } = useParams();
 
-  const editData = () => {
+  const addData = () => {
     const requestingData = {
       nim: NIM,
       name: nama,
@@ -19,39 +17,25 @@ const EditData = () => {
       alamat: alamat,
     };
     axios({
-      method: "PUT",
+      method: "POST",
       url: "http://localhost:3000/mahasiswa",
       data: requestingData,
-    }).then(() => {
-      alert("data berhasil diubah");
-      window.location.replace("/");
-    });
+    })
+      .then(() => {
+        alert("data berhasil ditambah");
+        window.location.replace("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
-
-  const getUsersById = async () => {
-    try {
-      const response = await axios.get(`http://localhost:3000/mahasiswa/${id}`);
-      const data = await response.data.data;
-      setNim(data.nim);
-      setNama(data.name);
-      setEmail(data.email);
-      setAlamat(data.alamat);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-
-  useEffect(() => {
-    getUsersById();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <>
       <div className="center">
         <div className="container">
           <h1 className="text-center" style={{ marginTop: "15px" }}>
-            Form Edit Data
+            Form Tambah Data
           </h1>
 
           <button
@@ -68,7 +52,6 @@ const EditData = () => {
               type="number"
               id="nim"
               name="nim"
-              value={NIM}
               placeholder="masukkan nim anda"
               required
               onChange={(event) => setNim(event.target.value)}
@@ -80,7 +63,6 @@ const EditData = () => {
               type="text"
               id="nama"
               name="nama"
-              value={nama}
               placeholder="masukkan nama anda"
               required
               onChange={(event) => setNama(event.target.value)}
@@ -92,7 +74,6 @@ const EditData = () => {
               type="email"
               id="email"
               name="email"
-              value={email}
               placeholder="masukkan email anda"
               onChange={(event) => setEmail(event.target.value)}
             />
@@ -103,7 +84,6 @@ const EditData = () => {
               type="text"
               id="alamat"
               name="alamat"
-              value={alamat}
               placeholder="masukkan alamat anda"
               required
               onChange={(event) => setAlamat(event.target.value)}
@@ -113,10 +93,10 @@ const EditData = () => {
           <button
             className="button"
             onClick={() => {
-              editData();
+              addData();
             }}
           >
-            Edit Data
+            Tambah Data
           </button>
         </div>
       </div>
@@ -124,4 +104,4 @@ const EditData = () => {
   );
 };
 
-export default EditData;
+export default InputData;
