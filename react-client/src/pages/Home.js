@@ -69,7 +69,7 @@ const Home = () => {
                     <td>
                       <button
                         className="btn-edit"
-                        onClick={() => window.location.replace("/edit")}
+                        onClick={() => window.location.replace(`/edit/${id}`)}
                       >
                         Edit
                       </button>
