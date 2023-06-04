@@ -2,22 +2,25 @@ import { useState } from "react";
 import axios from "axios";
 import "../../style/homeStyle.css";
 
-const Login = () => {
+const Register = () => {
   const [nip, setNip] = useState("");
+  const [nama, setNama] = useState("");
   const [password, setPassword] = useState("");
 
-  const userLogin = () => {
+  const registerUser = () => {
     const requestingData = {
       nip: nip,
+      nama: nama,
       password: password,
     };
     axios({
       method: "POST",
-      url: "http://localhost:3000/login/",
+      url: "http://localhost:3000/login/register",
       data: requestingData,
     })
       .then(() => {
-        window.location.replace("/home");
+        alert("Register berhasil");
+        window.location.replace("/");
       })
       .catch((err) => {
         alert("username atau password yang anda masukan salah");
@@ -48,6 +51,16 @@ const Login = () => {
               />
             </form>
             <form>
+              <label>Nama</label>
+              <input
+                type="text"
+                placeholder="masukkan nama anda"
+                name="nama"
+                required
+                onChange={(e) => setNama(e.target.value)}
+              />
+            </form>
+            <form>
               <label>Password</label>
               <input
                 type="password"
@@ -56,22 +69,15 @@ const Login = () => {
                 required
                 onChange={(e) => {
                   setPassword(e.target.value);
+                  console.log(e.target.value);
                 }}
               />
             </form>
             <button
               className="button"
+              style={{ marginTop: " 30px" }}
               onClick={() => {
-                console.log(userLogin());
-              }}
-            >
-              Login
-            </button>
-            <button
-              className="button"
-              style={{ marginTop: " -20px" }}
-              onClick={() => {
-                window.location.replace("/register");
+                registerUser();
               }}
             >
               Register
@@ -83,4 +89,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

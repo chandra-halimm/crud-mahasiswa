@@ -12,8 +12,10 @@ sequelize.sync().then(() => {
 
 const dosenEnpoint = require("./routes/dosen");
 const mahasiswaEnpoint = require("./routes/mahasiswa");
+const loginEndpoint = require("./routes/login");
 app.use("/mahasiswa", mahasiswaEnpoint);
 app.use("/dosen", dosenEnpoint);
+app.use("/login", loginEndpoint);
 
 app.listen(port, () => {
   console.log(`listen port on : ${port}`);
