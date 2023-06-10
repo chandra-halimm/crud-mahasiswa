@@ -42,23 +42,24 @@ router.post("/register", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const { nip, password } = req.body;
-    const userLogin = await loginModels.findOne({ where: { nip: nip } });
+    const userLogin = await loginModels.findOne({
+      where: { nip: nip, password: password },
+    });
 
-    if (userLogin.nip === userLogin.password) {
-      res
-        .status(200)
-        .json({
-          data: userLogin,
-          message: "success login",
-        })
-        .then(() => {
-          window.location.replace("/home");
-        });
+    if (userLogin) {
+      res.status(200).json({
+        data: userLogin,
+        message: "Success login",
+      });
+    } else {
+      res.status(401).json({
+        message: "Invalid username or password",
+      });
     }
   } catch (err) {
     console.log(err);
-    res.status(400).json({
-      message: "error login data",
+    res.status(500).json({
+      message: "Error login data",
     });
   }
 });

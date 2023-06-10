@@ -20,6 +20,9 @@ const Home = () => {
   };
 
   useEffect(() => {
+    if (!localStorage.getItem("nip") && !localStorage.getItem("password")) {
+      window.location.replace("/");
+    }
     axios({
       method: "GET",
       url: "http://localhost:3000/mahasiswa",
@@ -27,7 +30,6 @@ const Home = () => {
       setMahasiswaList(result.data.data);
     });
   }, []);
-
   return (
     <>
       <div className="container" style={{ marginTop: "30px" }}>

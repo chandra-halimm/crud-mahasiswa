@@ -57,7 +57,7 @@ const EditData = () => {
           <button
             className="button"
             onClick={() => {
-              window.location.replace("/");
+              window.location.replace("/home");
             }}
           >
             Kembali

@@ -18,6 +18,8 @@ const Login = () => {
     })
       .then(() => {
         window.location.replace("/home");
+        localStorage.setItem("nip", nip);
+        localStorage.setItem("password", password);
       })
       .catch((err) => {
         alert("username atau password yang anda masukan salah");
