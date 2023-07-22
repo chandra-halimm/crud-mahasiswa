@@ -52,6 +52,33 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.delete("/:nip", async (req, res) => {
+  try {
+    const { nip } = req.params;
+    const userDosen = await dosenModels.findOne({
+      where: { nip: nip },
+    });
+
+    if (!userDosen) {
+      res.status(400).json({
+        data: userDosen,
+        message: "fail to delete data",
+      });
+    } else {
+      await userDosen.destroy();
+      res.status(200).json({
+        data: userDosen,
+        message: "delete data success",
+      });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      message: "internal server error",
+    });
+  }
+});
+
 router.put("/", async (req, res) => {
   try {
     const { nip, name, email, alamat, nipBaru } = req.body;
